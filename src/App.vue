@@ -19,9 +19,10 @@
 import Header from "@/components/Header.vue"
 import Footer from "@/components/Footer.vue"
 import Sidebar from "@/components/Sidebar.vue"
+import { RouterView } from 'vue-router'
 
 </script>
-import { RouterView } from 'vue-router'
+
 <style scoped>
 
 </style>
