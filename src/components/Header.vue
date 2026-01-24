@@ -71,22 +71,8 @@ function toggleDark() {
 }
 
 onMounted(() => {
-  // Check if dark mode is already active (e.g. from system preference or persistence)
-  // For now we just respect the class if present
   if (document.documentElement.classList.contains('dark')) {
     isDark.value = true;
-    // We shouldn't animate on init, just set the state? 
-    // Or we can let it animate if we want. But the icon starts as moonPath.
-    // If it's dark, we want sunPath.
-    // However, MorphSVG might need element to be rendered. onMounted is fine.
-    // Let's set initial state without animation if possible, but MorphSVG is path-based.
-    // Changing the path data d directly via variable is better for init state.
-    // But current implementation binds :d="moonPath" static?
-    // No, path id="darkModeIcon" :d="moonPath". It relies on gsap to morph it later?
-    // Wait, the template binds `:d="moonPath"`. It always starts as moonPath.
-    // If we are in dark mode, we should morph it to sunPath immediately.
-    
-    // Better: Make the path reactive? Or just run gsap.set?
     gsap.set("#darkModeIcon", { morphSVG: sunPath });
   }
 })
