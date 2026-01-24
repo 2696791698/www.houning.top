@@ -16,16 +16,6 @@
         </div>
       </div>
     </div>
-
-    <!--<div class="w-96">-->
-    <!--  <div class="bg-linear-to-r from-sky-300/20 to-purple-500/10 rounded-2xl p-6 text-center">-->
-    <!--    <div class="text-4xl mb-3">🎨</div>-->
-    <!--    <h3 class="font-semibold text-lg mb-2">设计美学</h3>-->
-    <!--    <p class="text-sm text-muted-foreground">-->
-    <!--      简约 · 和谐 · 优雅-->
-    <!--    </p>-->
-    <!--  </div>-->
-    <!--</div>-->
   </div>
 </template>
 
