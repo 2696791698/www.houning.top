@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    这是关于.
+    一个从零开始, 基于 Vue3 制作的博客站.
   </div>
 </template>
 
