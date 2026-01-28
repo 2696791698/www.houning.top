@@ -1,9 +1,9 @@
 <template>
   <div class="">
-    <div class="backdrop-blur-3xl shadow-sm space-y-4 space-x-4">
-      这是首页.
-      <br />
-      QWQ.
+    <div class="backdrop-blur-3xl rounded-xl shadow-sm h-96">
+      <div class="text-5xl font-bold">
+        欢迎来到 Houning's Blog!
+      </div>
     </div>
   </div>
 </template>

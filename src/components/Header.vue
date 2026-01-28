@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-between sticky backdrop-blur-3xl h-18 bg-background/60 shadow-sm px-20 duration-300 transition-all">
+  <div class="flex items-center justify-between sticky backdrop-blur-3xl h-22 bg-background/60 shadow-sm px-20 duration-300 transition-all">
     <div>
       <div class="flex items-center space-x-6">
         <a href="https://www.houning.top">Houning's Blog</a>
@@ -19,21 +19,21 @@
     </div>
 
     <div class="flex space-x-2">
-      <div class="btn">
-        <a href="https://space.bilibili.com/3537112158701795" target="_blank">
+      <a class="btn" href="https://space.bilibili.com/3537112158701795" target="_blank">
+        <div>
           <svg height="24px" width="24px" viewBox="0 0 1024 1024">
             <path id="bilibiliIcon" :d="bilibiliPath" :fill="isDark ? '#fff' : '#000'" />
           </svg>
-        </a>
-      </div>
+        </div>
+      </a>
 
-      <div class="btn">
-        <a href="https://github.com/2696791698" target="_blank">
+      <a class="btn" href="https://github.com/2696791698" target="_blank">
+        <div>
           <svg height="24px" width="24px" viewBox="0 0 1024 1024">
             <path id="githubIcon" :d="githubPath" :fill="isDark ? '#fff' : '#000'" />
           </svg>
-        </a>
-      </div>
+        </div>
+      </a>
 
       <div class="btn" @click="toggleDark">
         <svg height="24px" width="24px" viewBox="0 0 1024 1024">
