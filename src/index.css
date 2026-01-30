@@ -64,7 +64,7 @@
 
 @layer components {
   .btn {
-    @apply relative px-3 py-3 rounded-xl bg-transparent cursor-pointer transition-all duration-300;
+    @apply relative px-3 py-3 rounded-2xl bg-transparent cursor-pointer transition-all duration-300;
 
     &:hover {
       @apply bg-gray-200 shadow-lg shadow-stone-800/20 -translate-y-1 scale-105;
@@ -80,14 +80,19 @@
       }
       
       &:active {
-        @apply scale-95 shadow-sm brightness-90 duration-75;
+        @apply scale-95 shadow-sm shadow-stone-800/20 brightness-90 duration-75;
       }
     }
   }
 
   .glass {
-    @apply backdrop-blur-3xl shadow-sm bg-white/30
+    @apply backdrop-blur-3xl shadow-lg bg-white/10
   }
+
+  .underline-animation {
+    @apply relative inline-block after:content-[''] after:left-1/2 after:bg-current after:w-0 hover:after:left-0 hover:after:w-full after:h-[2px] after:absolute after:-bottom-0 after:transition-all after:duration-300
+  }
+
   /* 移植 Background.vue 的样式到这里以确保正确的优先级和已知的深色模式支持 */
   .background-container {
     --bg-color: var(--color-stone-50);

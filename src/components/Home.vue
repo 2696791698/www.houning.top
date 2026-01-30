@@ -1,5 +1,5 @@
 <template>
-  <div class="glass rounded-xl h-96 p-8">
+  <div class="glass rounded-4xl h-96 p-8">
     <div class="text-5xl font-bold">
       <div>
         欢迎来到

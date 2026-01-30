@@ -1,24 +1,31 @@
 <template>
-  <div class="glass flex items-center justify-between sticky h-22 px-20">
+  <div class="glass flex flex-wrap items-center justify-between sticky h-22 px-22">
     <div>
       <div class="flex items-center space-x-6">
         <a href="https://www.houning.top">Houning's Diary</a>
-        <RouterLink to="/" class="text-primary transform hover:scale-105 group">
+        <RouterLink to="/" class="text-primary hover:scale-110 underline-animation">
           <span>首页</span>
-          <div class="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100"></div>
         </RouterLink>
-        <RouterLink to="/about" class="text-primary transform hover:scale-105 group">
+
+        <RouterLink to="/" class="text-primary hover:scale-110 underline-animation">
+          <span>文章</span>
+        </RouterLink>
+
+        <RouterLink to="/about" class="text-primary hover:scale-110 underline-animation">
           <span>关于</span>
-          <div class="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100"></div>
         </RouterLink>
-        <RouterLink to="/log" class="text-primary transform hover:scale-105 group">
+
+        <RouterLink to="/log" class="text-primary hover:scale-110 underline-animation">
           <span>更新日志</span>
-          <div class="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100"></div>
+        </RouterLink>
+
+        <RouterLink to="/" class="text-primary hover:scale-110 underline-animation">
+          <span>友情链接</span>
         </RouterLink>
       </div>
     </div>
 
-    <div class="flex space-x-2">
+    <div class="flex gap-2">
       <a class="btn" href="https://space.bilibili.com/3537112158701795" target="_blank">
         <div>
           <svg height="24px" width="24px" viewBox="0 0 1024 1024">

@@ -1,5 +1,5 @@
 <template>
-  <div class="Log">
+  <div class="glass Log p-8 rounded-4xl">
     <p>2026.1.30 新增许可声明</p>
     <p>2026.1.29 新增字体抗锯齿</p>
     <p>2026.1.29 使用 HarmonyOS Sans 字体</p>
