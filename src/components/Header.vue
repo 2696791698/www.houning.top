@@ -1,19 +1,19 @@
 <template>
-  <div class="flex items-center justify-between sticky backdrop-blur-3xl h-22 bg-background/60 shadow-sm px-20 duration-300 transition-all">
+  <div class="glass flex items-center justify-between sticky h-22 px-20">
     <div>
       <div class="flex items-center space-x-6">
-        <a href="https://www.houning.top">Houning's Blog</a>
+        <a href="https://www.houning.top">Houning's Diary</a>
         <RouterLink to="/" class="text-primary transform hover:scale-105 group">
           <span>首页</span>
-          <div class="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          <div class="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100"></div>
         </RouterLink>
         <RouterLink to="/about" class="text-primary transform hover:scale-105 group">
           <span>关于</span>
-          <div class="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          <div class="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100"></div>
         </RouterLink>
         <RouterLink to="/log" class="text-primary transform hover:scale-105 group">
           <span>更新日志</span>
-          <div class="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          <div class="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100"></div>
         </RouterLink>
       </div>
     </div>

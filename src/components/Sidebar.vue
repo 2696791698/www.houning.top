@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-xl backdrop-blur-3xl shadow-sm">
+  <div class="glass rounded-xl">
     <div class="w-96">
       <div class="bg-background/60 rounded-2xl p-6">
         <div class="text-lg mb-3 font-semibold">📰 最新文章</div>
