@@ -1,5 +1,6 @@
 <template>
   <div class="glass Log p-8 rounded-4xl">
+    <p>2026.2.1 '关于' 使用下拉菜单展示</p>
     <p>2026.1.30 新增许可声明</p>
     <p>2026.1.29 新增字体抗锯齿</p>
     <p>2026.1.29 使用 HarmonyOS Sans 字体</p>

@@ -1,25 +1,62 @@
 <template>
-  <div class="glass flex flex-wrap items-center justify-between sticky h-22 px-22">
+  <div class="shadow-lg shadow-black/5 glass flex flex-wrap items-center justify-between sticky top-0 z-50 h-22 px-22">
     <div>
       <div class="flex items-center space-x-6">
         <a href="https://www.houning.top">Houning's Diary</a>
-        <RouterLink to="/" class="text-primary hover:scale-110 underline-animation">
+        <RouterLink to="/" class="text-primary underline-animation">
           <span>首页</span>
         </RouterLink>
 
-        <RouterLink to="/" class="text-primary hover:scale-110 underline-animation">
+        <RouterLink to="/" class="text-primary underline-animation">
           <span>文章</span>
         </RouterLink>
+        
+        <div
+          class="relative"
+          @mouseenter="aboutOpen = true"
+          @mouseleave="aboutOpen = false"
+        >
+          <div
+            class="text-primary cursor-pointer"
+          >
+            关于
+          </div>
+          <Transition name="dropdown">
+            <div
+              v-show="aboutOpen"
+              class="absolute top-full -left-4 pt-3"
+            >
+              <div class="backdrop-blur-md rounded-2xl w-32 shadow-xl bg-white/70 border-white/20 dark:bg-stone-800/70 border dark:border-stone-700/50 overflow-hidden">
+                <RouterLink
+                  to="/about-me"
+                  class="block px-4 py-2 underlin"
+                  @click="aboutOpen = false"
+                >
+                  <span class="underline-animation">关于我</span>
+                </RouterLink>
 
-        <RouterLink to="/about" class="text-primary hover:scale-110 underline-animation">
-          <span>关于</span>
-        </RouterLink>
+                <RouterLink
+                  to="/about-site"
+                  class="block px-4 py-2"
+                  @click="aboutOpen = false"
+                >
+                  <span class="underline-animation">关于本站</span>
+                </RouterLink>
 
-        <RouterLink to="/log" class="text-primary hover:scale-110 underline-animation">
-          <span>更新日志</span>
-        </RouterLink>
+                <RouterLink
+                  to="/log"
+                  class="block px-4 py-2"
+                  @click="aboutOpen = false"
+                >
+                  <span class="underline-animation">更新日志</span>
+                </RouterLink>
 
-        <RouterLink to="/" class="text-primary hover:scale-110 underline-animation">
+              </div>
+            </div>
+          </Transition>
+        </div>
+
+        <RouterLink to="/friends" class="text-primary underline-animation">
           <span>友情链接</span>
         </RouterLink>
       </div>
@@ -57,6 +94,7 @@ import { ref, onMounted } from 'vue'
 import { gsap } from "gsap";
 import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
 
+const aboutOpen = ref(false)
 gsap.registerPlugin(MorphSVGPlugin);
 
 const isDark = ref(false)
@@ -86,5 +124,22 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: 
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
 
+.dropdown-enter-from,
+.dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.98);
+}
+
+.dropdown-enter-to,
+.dropdown-leave-from {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
 </style>
