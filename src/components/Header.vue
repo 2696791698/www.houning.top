@@ -20,10 +20,10 @@
             关于
           </div>
           <Transition name="dropdown">
-            <div v-show="aboutOpen" class="absolute top-10 backdrop-blur-xs rounded-2xl w-32 shadow-xl bg-stone-100/50 dark:bg-stone-800/70 dark:border-stone-700/50 overflow-hidden">
+            <div v-show="aboutOpen" class="flex justify-between flex-col gap-4 p-4 -left-1/2 absolute translate-y-2 backdrop-blur-xs rounded-2xl w-32 shadow-xl bg-stone-100/50 dark:bg-stone-800/70 dark:border-stone-700/50 overflow-hidden">
               <RouterLink
                 to="/about-me"
-                class="block px-4 py-2 underlin"
+                class="block"
                 @click="aboutOpen = false"
               >
                 <span class="underline-animation">关于我</span>
@@ -31,7 +31,7 @@
 
               <RouterLink
                 to="/about-site"
-                class="block px-4 py-2"
+                class="block"
                 @click="aboutOpen = false"
               >
                 <span class="underline-animation">关于本站</span>
@@ -39,20 +39,11 @@
 
               <RouterLink
                 to="/log"
-                class="block px-4 py-2"
+                class="block"
                 @click="aboutOpen = false"
               >
                 <span class="underline-animation">更新日志</span>
               </RouterLink>
-
-              <RouterLink
-                to="/log"
-                class="block px-4 py-2"
-                @click="aboutOpen = false"
-              >
-                <span class="underline-animation">更新日志</span>
-              </RouterLink>
-
             </div>
           </Transition>
         </div>
