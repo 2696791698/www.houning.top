@@ -86,7 +86,19 @@
   }
 
   .glass {
-    @apply backdrop-blur-2xl shadow-lg bg-white/10
+    @apply backdrop-blur-2xl shadow-lg bg-white/10;
+  }
+
+  .header-glass {
+    @apply isolate;
+
+    &::before {
+      @apply content-[''] absolute inset-0 z-[-1] backdrop-blur-2xl shadow-lg bg-white/10;
+    }
+
+    .dark & {
+      background: rgba(41, 37, 36, 0.7);
+    }
   }
 
   .underline-animation {
