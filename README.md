@@ -1,75 +1,23 @@
-# Nuxt Minimal Starter
+我的个人网站, 基于 Vue 3 生态系统构建.
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## 技术栈
 
-## Setup
+- **框架**: Nuxt 3
+- **样式**: Tailwind CSS 4
 
-Make sure to install dependencies:
+## 本地运行
 
 ```bash
-# npm
+# 安装依赖
 npm install
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+# 启动开发服务器
 npm run dev
 
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
+# 构建生产版本
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+## 许可证
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+[GPL-2.0 license](https://github.com/2696791698/www.houning.top?tab=readme-ov-file#GPL-2.0-1-ov-file)
