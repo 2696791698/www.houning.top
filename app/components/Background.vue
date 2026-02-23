@@ -65,7 +65,6 @@ onBeforeUnmount(() => {
   overflow: hidden;
 }
 
-/* ---------- 核心：两层交叉淡入淡出，保证“颜色渐变过去” ---------- */
 .layer {
   position: absolute;
   inset: 0;
@@ -77,7 +76,7 @@ onBeforeUnmount(() => {
   opacity: 1;
 }
 
-/* ---------- Light 主题变量（雾白、奶油灰） ---------- */
+/* ---------- Light 主题变量 ---------- */
 .light {
   --bgA: #f2f0ea;
   --bgB: #e7edf3;
@@ -91,20 +90,19 @@ onBeforeUnmount(() => {
   --vignette: rgba(20, 25, 30, 0.055);
   --noiseOpacity: 0.05;
 
-  /* 更新：两束不同色温的丝绸反光 */
   --sheenA: rgba(255, 255, 255, 0.55);
   --sheenB: rgba(255, 235, 220, 0.35);
   --sheen2: rgba(255, 255, 255, 0.0);
 }
 
-/* ---------- Dark 主题变量（深海雾面：统一结构、低饱和高级感） ---------- */
+/* ---------- Dark 主题变量 ---------- */
 .dark {
-  /* 底色：石墨蓝黑（不发紫） */
+  /* 底色 */
   --bgA: #0b111a;
   --bgB: #0f1b2a;
   --bgC: #0c1522;
 
-  /* 雾：仍然是暖/冷/青，低对比更“雾面” */
+  /* 雾 */
   --mist1: rgba(255, 190, 150, 0.06);
   --mist2: rgba(120, 195, 255, 0.10);
   --mist3: rgba(110, 235, 215, 0.08);
@@ -113,16 +111,16 @@ onBeforeUnmount(() => {
   --grid: rgba(235, 245, 255, 0.032);
   --vignette: rgba(0, 0, 0, 0.62);
 
-  /* 噪点：深色稍微多一点才有“雾面” */
+  /* 噪点 */
   --noiseOpacity: 0.085;
 
-  /* 丝绸反光：冷光为主 + 一点点暖边（更贵） */
+  /* 反光 */
   --sheenA: rgba(205, 235, 255, 0.18);
   --sheenB: rgba(255, 210, 185, 0.10);
   --sheen2: rgba(0, 0, 0, 0.0);
 }
 
-/* ---------- 1) 底色：多层渐变，做“雾面底” ---------- */
+/* ---------- 1) 底色 ---------- */
 .base {
   position: absolute;
   inset: -25%;
@@ -133,7 +131,7 @@ onBeforeUnmount(() => {
     linear-gradient(180deg, var(--bgA), var(--bgA));
 }
 
-/* 深色：额外加一点空间感（顶部冷亮、底部更压） */
+/* 深色 */
 .dark .base {
   background:
     radial-gradient(1200px 800px at 18% 22%, var(--bgC), transparent 62%),
@@ -143,7 +141,7 @@ onBeforeUnmount(() => {
     linear-gradient(180deg, var(--bgA), var(--bgA));
 }
 
-/* ---------- 2) 雾气层：没有“球”，只有低对比色雾缓慢漂移 ---------- */
+/* ---------- 2) 雾气层 ---------- */
 .mist {
   position: absolute;
   inset: -35%;
@@ -168,7 +166,7 @@ onBeforeUnmount(() => {
   100% { transform: translate(2%, 1.8%) scale(1.02); }
 }
 
-/* ---------- 3) 微光扫过：丝绸反光（更新：两束不同色温） ---------- */
+/* ---------- 3) 微光 ---------- */
 .sheen {
   position: absolute;
   inset: -40%;
@@ -190,7 +188,7 @@ onBeforeUnmount(() => {
   100% { transform: translate(2%, 1.5%) rotate(6deg); }
 }
 
-/* ---------- 4) 细网格：更细更淡，不抢内容 ---------- */
+/* ---------- 4) 细网格 ---------- */
 .grid {
   position: absolute;
   inset: 0;
@@ -202,7 +200,7 @@ onBeforeUnmount(() => {
   mask-image: radial-gradient(70% 60% at 50% 30%, #000 55%, transparent 100%);
 }
 
-/* ---------- 5) 暗角：让画面更“收” ---------- */
+/* ---------- 5) 暗角 ---------- */
 .vignette {
   position: absolute;
   inset: 0;
@@ -213,7 +211,7 @@ onBeforeUnmount(() => {
   background: radial-gradient(80% 72% at 50% 26%, transparent 42%, var(--vignette) 100%);
 }
 
-/* ---------- 6) 噪点：雾面质感关键，浅色也不“白板” ---------- */
+/* ---------- 6) 噪点 ---------- */
 .noise {
   position: absolute;
   inset: 0;
