@@ -1,5 +1,5 @@
 <template>
-  <footer class="font-medium text-base text-center text-gray-500 dark:text-gray-400">
+  <footer class="font-medium text-base text-center text-gray-500 dark:text-gray-400 pb-8">
     <div class="">
       <a 
         href="https://beian.miit.gov.cn" 

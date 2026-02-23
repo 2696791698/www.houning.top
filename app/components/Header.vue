@@ -36,7 +36,6 @@
                 :to="item.to"
                 :data-key="item.key"
                 :ref="(el) => setItemRef(el, item.key)"
-                href="#"
                 class="block px-8 py-3 rounded-full font-medium text-center transition-colors duration-200"
                 :class="item.key === activeKey ? 'text-white' : 'text-white/70 hover:text-white'"
                 @mouseenter.prevent="moveToKey(item.key)"

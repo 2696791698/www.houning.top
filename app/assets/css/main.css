@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "@nuxt/ui";
+
+@source "../../../content/**/*";
 @custom-variant dark (&:where(.dark, .dark *));
 @font-face {
   font-family: "HarmonyOS Sans SC";
@@ -57,4 +60,5 @@ body {
 
 html {
   overflow-y: scroll;
+  @apply antialiased scroll-smooth;
 }

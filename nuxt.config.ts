@@ -2,7 +2,6 @@ import tailwindcss from '@tailwindcss/vite'
 import type { NuxtConfig } from 'nuxt/schema'
 
 // 规避 Nuxt 内置的 Vite 类型与 @tailwindcss/vite 插件类型之间的临时不匹配问题
-
 const tailwindVitePlugins =
   tailwindcss() as unknown as NonNullable<NuxtConfig['vite']>['plugins']
 
@@ -12,9 +11,10 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   css: ['~/assets/css/main.css'],
   modules: [
+    '@nuxt/ui',
     '@nuxt/content'
   ],
   vite: {
-    plugins: tailwindVitePlugins,
-  },
+    plugins: tailwindVitePlugins
+  }
 })
