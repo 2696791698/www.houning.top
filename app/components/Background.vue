@@ -98,25 +98,25 @@ onBeforeUnmount(() => {
 /* ---------- Dark 主题变量 ---------- */
 .dark {
   /* 底色 */
-  --bgA: #0b111a;
-  --bgB: #0f1b2a;
-  --bgC: #0c1522;
+  --bgA: #132030;
+  --bgB: #1a2d43;
+  --bgC: #20344c;
 
   /* 雾 */
-  --mist1: rgba(255, 190, 150, 0.06);
-  --mist2: rgba(120, 195, 255, 0.10);
-  --mist3: rgba(110, 235, 215, 0.08);
+  --mist1: rgba(255, 190, 150, 0.08);
+  --mist2: rgba(120, 195, 255, 0.13);
+  --mist3: rgba(110, 235, 215, 0.11);
 
   /* 细网格与暗角 */
-  --grid: rgba(235, 245, 255, 0.032);
-  --vignette: rgba(0, 0, 0, 0.62);
+  --grid: rgba(235, 245, 255, 0.045);
+  --vignette: rgba(0, 0, 0, 0.46);
 
   /* 噪点 */
-  --noiseOpacity: 0.085;
+  --noiseOpacity: 0.06;
 
   /* 反光 */
-  --sheenA: rgba(205, 235, 255, 0.18);
-  --sheenB: rgba(255, 210, 185, 0.10);
+  --sheenA: rgba(205, 235, 255, 0.24);
+  --sheenB: rgba(255, 210, 185, 0.14);
   --sheen2: rgba(0, 0, 0, 0.0);
 }
 
@@ -137,7 +137,7 @@ onBeforeUnmount(() => {
     radial-gradient(1200px 800px at 18% 22%, var(--bgC), transparent 62%),
     radial-gradient(1000px 700px at 82% 18%, var(--bgB), transparent 62%),
     radial-gradient(900px 700px at 50% 92%, var(--bgB), transparent 58%),
-    radial-gradient(1100px 720px at 55% 6%, rgba(140, 205, 255, 0.08), transparent 60%),
+    radial-gradient(1100px 720px at 55% 6%, rgba(140, 205, 255, 0.14), transparent 60%),
     linear-gradient(180deg, var(--bgA), var(--bgA));
 }
 
@@ -156,8 +156,8 @@ onBeforeUnmount(() => {
 }
 
 .dark .mist {
-  filter: blur(78px);
-  opacity: 0.92;
+  filter: blur(74px);
+  opacity: 0.96;
 }
 
 @keyframes mistDrift {
@@ -180,7 +180,7 @@ onBeforeUnmount(() => {
 }
 
 .dark .sheen {
-  opacity: 0.30;
+  opacity: 0.38;
 }
 
 @keyframes sheenMove {
@@ -208,7 +208,7 @@ onBeforeUnmount(() => {
 }
 
 .dark .vignette {
-  background: radial-gradient(80% 72% at 50% 26%, transparent 42%, var(--vignette) 100%);
+  background: radial-gradient(80% 72% at 50% 26%, transparent 48%, var(--vignette) 100%);
 }
 
 /* ---------- 6) 噪点 ---------- */

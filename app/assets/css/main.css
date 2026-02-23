@@ -62,3 +62,21 @@ html {
   overflow-y: scroll;
   @apply antialiased scroll-smooth;
 }
+
+/* 路由切换过渡效果 */
+.page-enter-active,
+.page-leave-active {
+  transition: all .28s cubic-bezier(.22,1,.36,1);
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(10px) scale(.985);
+  filter: blur(4px);
+}
+.page-enter-to,
+.page-leave-from {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}

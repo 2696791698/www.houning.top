@@ -14,6 +14,12 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/content'
   ],
+  app: {
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in'
+    }
+  },
   vite: {
     plugins: tailwindVitePlugins
   }
