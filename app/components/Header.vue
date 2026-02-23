@@ -1,4 +1,14 @@
 <template>
+  <ClientOnly>
+    <LazyUContentSearch
+      v-model:search-term="searchTerm"
+      :files="files"
+      :navigation="navigation"
+      :shortcut="false"
+      :fuse="{ resultLimit: 42 }"
+      :color-mode="false"
+    />
+  </ClientOnly>
   <!-- 占位 -->
   <div class="h-[80px]" />
   <!-- 脱离文本流+贴顶 -->
@@ -86,7 +96,8 @@
         </div>
 
         <div 
-          class="flex items-center justify-center rounded-full bg-white/10 hover:bg-stone-200/30 dark:hover:bg-white/20 backdrop-blur-sm border border-white/20 size-[50px] active:scale-95 shadow-[2px_2px_10px_rgba(0,0,0,0.10)] hover:shadow-stone-700/20 dark:hover:shadow-white/10 transition-all duration-200 ease-in-out hover:border hover:border-white/10 cursor-pointer">
+          class="flex items-center justify-center rounded-full bg-white/10 hover:bg-stone-200/30 dark:hover:bg-white/20 backdrop-blur-sm border border-white/20 size-[50px] active:scale-95 shadow-[2px_2px_10px_rgba(0,0,0,0.10)] hover:shadow-stone-700/20 dark:hover:shadow-white/10 transition-all duration-200 ease-in-out hover:border hover:border-white/10 cursor-pointer"
+          @click="open = true">
           <svg height="24px" width="24px" viewBox="0 0 1024 1024">
             <path :d="searchPath" :fill="theme === 'light' ? '#000' : '#fff'" />
           </svg>
@@ -136,6 +147,17 @@ const capsuleStyle = computed(() => {
 const activeKey = computed(() => {
   return menus.find((item) => item.to === route.path)?.key ?? "/"
 })
+
+const searchTerm = ref('')
+const { open } = useContentSearch()
+
+const { data: navigation } = await useAsyncData('navigation', () =>
+  queryCollectionNavigation('content')
+)
+
+const { data: files } = useAsyncData('search', () =>
+  queryCollectionSearchSections('content')
+)
 
 function setItemRef(el: any, key: string) {
   // NuxtLink 渲染后 el 可能是组件实例,, 需要通过 .$el 获取真正的 HTMLElement

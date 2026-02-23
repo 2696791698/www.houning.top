@@ -10,7 +10,7 @@
 <script setup lang="ts">
 const route = useRoute()
 const { data: post } = await useAsyncData(() => {
-  return queryCollection('content').path(`/pages${route.path}`).first()
+  return queryCollection('content').path(route.path).first()
 })
 const friends = [
   {
