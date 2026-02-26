@@ -1,6 +1,6 @@
 <template>
   <footer class="font-medium text-base text-center text-gray-500 dark:text-gray-300 pb-8">
-    <div class="">
+    <div>
       <a 
         href="https://beian.miit.gov.cn" 
         target="_blank" 
@@ -20,8 +20,8 @@
         「闽ICP备2025116672号-1」
       </a>
     </div>
-    <div class="">Copyright © 2025 - 2026 Houning. All Rights Reserved.</div>
-    <div class="">
+    <div>Copyright © 2025 - 2026 Houning. All Rights Reserved.</div>
+    <div>
       本站内容如无特别声明, 均使用
       <a
         href="https://creativecommons.org/licenses/by-nc-sa/4.0/"

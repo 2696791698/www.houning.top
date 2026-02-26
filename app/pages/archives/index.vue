@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-[1100px] mx-auto px-4 py-16 space-y-8 text-black dark:text-white">
+  <div class="max-w-[1100px] mx-auto px-4 pb-12 pt-36 space-y-8 text-black dark:text-white">
     <article>
       <ContentRenderer v-if="post" :value="post" />
       <div v-else>文章未找到</div>

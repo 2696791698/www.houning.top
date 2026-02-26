@@ -10,7 +10,7 @@
     />
   </ClientOnly>
   <!-- 占位 -->
-  <div class="h-[80px]" />
+  <!-- <div class="h-[80px]" /> -->
   <!-- 脱离文本流+贴顶 -->
   <div class="fixed top-0 inset-x-0 z-10">
     <!-- 背景模糊 -->
@@ -55,7 +55,7 @@
                 @touchstart="isPressing = true"
                 @touchend="isPressing = false"
               >
-                <span class="text-black dark:text-white">
+                <span class="text-black dark:text-white select-none">
                   {{ item.label }}
                 </span>
               </NuxtLink>

@@ -59,7 +59,6 @@ body {
 }
 
 html {
-  overflow-y: scroll;
   @apply antialiased scroll-smooth;
 }
 
