@@ -1,25 +1,9 @@
 <template>
-  <div class="bg-root" aria-hidden="true">
-    <!-- Light -->
-    <div class="layer light" :class="{ show: !isDark }">
-      <div class="base"></div>
-      <div class="mist"></div>
-      <div class="sheen"></div>
-      <div class="grid"></div>
-      <div class="noise"></div>
-      <div class="vignette"></div>
-    </div>
-
-    <!-- Dark -->
-    <div class="layer dark" :class="{ show: isDark }">
-      <div class="base"></div>
-      <div class="mist"></div>
-      <div class="sheen"></div>
-      <div class="grid"></div>
-      <div class="noise"></div>
-      <div class="vignette"></div>
-    </div>
-  </div>
+  <div
+    class="bg-root"
+    :class="{ 'is-dark': isDark, 'is-ready': isReady }"
+    aria-hidden="true"
+  ></div>
 
   <div class="bg-content">
     <slot />
@@ -27,18 +11,23 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, ref } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 
 const isDark = ref(false);
+const isReady = ref(false);
 let observer: MutationObserver | null = null;
 
-function sync() {
+function syncThemeClass() {
   isDark.value = document.documentElement.classList.contains("dark");
 }
 
 onMounted(() => {
-  sync();
-  observer = new MutationObserver(sync);
+  syncThemeClass();
+  requestAnimationFrame(() => {
+    isReady.value = true;
+  });
+
+  observer = new MutationObserver(syncThemeClass);
   observer.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["class"],
@@ -63,175 +52,71 @@ onBeforeUnmount(() => {
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  contain: paint;
 }
 
-.layer {
+.bg-root::before,
+.bg-root::after {
+  content: "";
   position: absolute;
   inset: 0;
-  opacity: 0;
-  transition: opacity 800ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  will-change: opacity;
+  transition: none;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat, repeat, repeat, repeat, no-repeat;
+  background-size: cover, cover, cover, cover, cover, cover, 84px 84px, 84px 84px, 160px 160px, 180px 180px, 210px 210px, cover;
+  background-position: center, center, center, center, center, center, center, center, 0 0, 22px 14px, 48px 36px, center;
 }
-.layer.show {
+
+.bg-root.is-ready::before,
+.bg-root.is-ready::after {
+  transition: opacity 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.bg-root::before {
+  opacity: 1;
+  background-image:
+    radial-gradient(78% 70% at 50% 28%, transparent 42%, rgba(18, 24, 32, 0.06) 100%),
+    radial-gradient(1120px 720px at 18% 22%, rgba(255, 255, 255, 0.50), transparent 64%),
+    radial-gradient(980px 700px at 82% 16%, rgba(132, 182, 238, 0.20), transparent 68%),
+    radial-gradient(860px 620px at 48% 86%, rgba(240, 208, 176, 0.20), transparent 72%),
+    radial-gradient(760px 520px at 10% 72%, rgba(255, 193, 147, 0.15), transparent 74%),
+    radial-gradient(720px 520px at 88% 42%, rgba(125, 209, 246, 0.14), transparent 74%),
+    repeating-linear-gradient(to right, rgba(20, 25, 30, 0.045) 0 1px, transparent 1px 84px),
+    repeating-linear-gradient(to bottom, rgba(20, 25, 30, 0.045) 0 1px, transparent 1px 84px),
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.22) 0 0.6px, transparent 0.8px),
+    radial-gradient(circle at 72% 64%, rgba(0, 0, 0, 0.16) 0 0.6px, transparent 0.8px),
+    radial-gradient(circle at 40% 80%, rgba(0, 0, 0, 0.11) 0 0.6px, transparent 0.8px),
+    linear-gradient(180deg, #f2f0ea 0%, #e7edf3 55%, #f6f1e8 100%);
+}
+
+.bg-root::after {
+  opacity: 0;
+  background-image:
+    radial-gradient(80% 72% at 50% 26%, transparent 48%, rgba(0, 0, 0, 0.44) 100%),
+    radial-gradient(1180px 760px at 18% 22%, rgba(128, 190, 246, 0.16), transparent 64%),
+    radial-gradient(1020px 740px at 82% 16%, rgba(120, 171, 228, 0.16), transparent 68%),
+    radial-gradient(900px 680px at 50% 90%, rgba(52, 84, 116, 0.24), transparent 72%),
+    radial-gradient(780px 560px at 12% 74%, rgba(255, 183, 136, 0.11), transparent 74%),
+    radial-gradient(760px 560px at 88% 44%, rgba(112, 224, 218, 0.11), transparent 74%),
+    repeating-linear-gradient(to right, rgba(235, 245, 255, 0.040) 0 1px, transparent 1px 84px),
+    repeating-linear-gradient(to bottom, rgba(235, 245, 255, 0.040) 0 1px, transparent 1px 84px),
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.18) 0 0.6px, transparent 0.8px),
+    radial-gradient(circle at 72% 64%, rgba(0, 0, 0, 0.24) 0 0.6px, transparent 0.8px),
+    radial-gradient(circle at 40% 80%, rgba(0, 0, 0, 0.22) 0 0.6px, transparent 0.8px),
+    linear-gradient(180deg, #132030 0%, #1a2d43 55%, #20344c 100%);
+}
+
+.bg-root.is-dark::before {
+  opacity: 0;
+}
+
+.bg-root.is-dark::after {
   opacity: 1;
 }
 
-/* ---------- Light 主题变量 ---------- */
-.light {
-  --bgA: #f2f0ea;
-  --bgB: #e7edf3;
-  --bgC: #f6f1e8;
-
-  --mist1: rgba(255, 190, 150, 0.14);
-  --mist2: rgba(140, 190, 255, 0.12);
-  --mist3: rgba(120, 220, 210, 0.10);
-
-  --grid: rgba(20, 25, 30, 0.055);
-  --vignette: rgba(20, 25, 30, 0.055);
-  --noiseOpacity: 0.05;
-
-  --sheenA: rgba(255, 255, 255, 0.55);
-  --sheenB: rgba(255, 235, 220, 0.35);
-  --sheen2: rgba(255, 255, 255, 0.0);
-}
-
-/* ---------- Dark 主题变量 ---------- */
-.dark {
-  /* 底色 */
-  --bgA: #132030;
-  --bgB: #1a2d43;
-  --bgC: #20344c;
-
-  /* 雾 */
-  --mist1: rgba(255, 190, 150, 0.08);
-  --mist2: rgba(120, 195, 255, 0.13);
-  --mist3: rgba(110, 235, 215, 0.11);
-
-  /* 细网格与暗角 */
-  --grid: rgba(235, 245, 255, 0.045);
-  --vignette: rgba(0, 0, 0, 0.46);
-
-  /* 噪点 */
-  --noiseOpacity: 0.06;
-
-  /* 反光 */
-  --sheenA: rgba(205, 235, 255, 0.24);
-  --sheenB: rgba(255, 210, 185, 0.14);
-  --sheen2: rgba(0, 0, 0, 0.0);
-}
-
-/* ---------- 1) 底色 ---------- */
-.base {
-  position: absolute;
-  inset: -25%;
-  background:
-    radial-gradient(1200px 800px at 18% 22%, var(--bgC), transparent 62%),
-    radial-gradient(1000px 700px at 82% 18%, var(--bgB), transparent 62%),
-    radial-gradient(900px 700px at 50% 92%, var(--bgB), transparent 58%),
-    linear-gradient(180deg, var(--bgA), var(--bgA));
-}
-
-/* 深色 */
-.dark .base {
-  background:
-    radial-gradient(1200px 800px at 18% 22%, var(--bgC), transparent 62%),
-    radial-gradient(1000px 700px at 82% 18%, var(--bgB), transparent 62%),
-    radial-gradient(900px 700px at 50% 92%, var(--bgB), transparent 58%),
-    radial-gradient(1100px 720px at 55% 6%, rgba(140, 205, 255, 0.14), transparent 60%),
-    linear-gradient(180deg, var(--bgA), var(--bgA));
-}
-
-/* ---------- 2) 雾气层 ---------- */
-.mist {
-  position: absolute;
-  inset: -35%;
-  background:
-    radial-gradient(900px 650px at 10% 70%, var(--mist1), transparent 72%),
-    radial-gradient(850px 650px at 90% 45%, var(--mist2), transparent 74%),
-    radial-gradient(800px 600px at 45% 30%, var(--mist3), transparent 74%);
-  filter: blur(70px);
-  opacity: 0.95;
-  transform: translateZ(0);
-  animation: mistDrift 22s ease-in-out infinite alternate;
-}
-
-.dark .mist {
-  filter: blur(74px);
-  opacity: 0.96;
-}
-
-@keyframes mistDrift {
-  0%   { transform: translate(-1.5%, 1%) scale(1); }
-  50%  { transform: translate(1.2%, -1.6%) scale(1.03); }
-  100% { transform: translate(2%, 1.8%) scale(1.02); }
-}
-
-/* ---------- 3) 微光 ---------- */
-.sheen {
-  position: absolute;
-  inset: -40%;
-  background:
-    radial-gradient(900px 600px at 20% 20%, var(--sheenA), var(--sheen2) 60%),
-    radial-gradient(800px 520px at 80% 30%, var(--sheenB), var(--sheen2) 62%);
-  filter: blur(30px);
-  opacity: 0.35;
-  mix-blend-mode: soft-light;
-  animation: sheenMove 16s ease-in-out infinite alternate;
-}
-
-.dark .sheen {
-  opacity: 0.38;
-}
-
-@keyframes sheenMove {
-  0%   { transform: translate(-2%, -1%) rotate(-6deg); }
-  100% { transform: translate(2%, 1.5%) rotate(6deg); }
-}
-
-/* ---------- 4) 细网格 ---------- */
-.grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to right, var(--grid) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
-  background-size: 84px 84px;
-  opacity: 0.28;
-  mask-image: radial-gradient(70% 60% at 50% 30%, #000 55%, transparent 100%);
-}
-
-/* ---------- 5) 暗角 ---------- */
-.vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(78% 70% at 50% 28%, transparent 38%, var(--vignette) 100%);
-}
-
-.dark .vignette {
-  background: radial-gradient(80% 72% at 50% 26%, transparent 48%, var(--vignette) 100%);
-}
-
-/* ---------- 6) 噪点 ---------- */
-.noise {
-  position: absolute;
-  inset: 0;
-  opacity: var(--noiseOpacity);
-  background-image:
-    radial-gradient(circle at 18% 22%, rgba(255,255,255,0.55) 0.5px, transparent 1px),
-    radial-gradient(circle at 72% 64%, rgba(0,0,0,0.45) 0.5px, transparent 1px),
-    radial-gradient(circle at 40% 80%, rgba(0,0,0,0.35) 0.5px, transparent 1px);
-  background-size: 160px 160px, 180px 180px, 210px 210px;
-  mix-blend-mode: overlay;
-}
-
-/* ---------- 减少动效 ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .mist,
-  .sheen {
-    animation: none;
-  }
-  .layer {
-    transition-duration: 0ms !important;
+  .bg-root.is-ready::before,
+  .bg-root.is-ready::after {
+    transition-duration: 0ms;
   }
 }
 </style>

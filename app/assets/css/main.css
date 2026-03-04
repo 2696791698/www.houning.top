@@ -56,6 +56,7 @@ body {
   color: var(--text-primary);
   font-family: "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   @apply antialiased;
+  @apply selection:bg-[hsla(0,0%,66%,.3)] selection:[text-shadow:1px_1px_5px_rgba(0,0,0,.2)] dark:selection:[text-shadow:1px_1px_5px_rgba(255,255,255,.5)];
 }
 
 html {
