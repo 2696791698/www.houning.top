@@ -1,0 +1,74 @@
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-houning-site
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    env:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
+      SSH_USER: ${{ secrets.SSH_USER }}
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Build with production image
+        run: |
+          docker pull 1panel/node:25.8.0
+
+          docker run --rm \
+            --entrypoint /bin/sh \
+            -v "$GITHUB_WORKSPACE:/workspace" \
+            -w /workspace \
+            1panel/node:25.8.0 \
+            -c 'node --version && npm ci && npm run build'
+
+          test -f .output/server/index.mjs
+
+          tar -czf "$RUNNER_TEMP/houning-site-release.tar.gz" \
+            -C .output .
+
+      - name: Configure SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          install -d -m 0700 "$HOME/.ssh"
+          printf '%s\n' "$SSH_PRIVATE_KEY" > "$HOME/.ssh/id_ed25519"
+          chmod 0600 "$HOME/.ssh/id_ed25519"
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 0600 "$HOME/.ssh/known_hosts"
+
+      - name: Upload release
+        run: |
+          scp \
+            -o BatchMode=yes \
+            -o ConnectTimeout=15 \
+            -P "$SSH_PORT" \
+            "$RUNNER_TEMP/houning-site-release.tar.gz" \
+            "$SSH_USER@$SSH_HOST:/home/deploy/uploads/houning-site-release.tar.gz"
+
+      - name: Deploy release
+        run: |
+          ssh \
+            -o BatchMode=yes \
+            -o ConnectTimeout=15 \
+            -T \
+            -p "$SSH_PORT" \
+            "$SSH_USER@$SSH_HOST" \
+            "sudo /usr/local/sbin/deploy-houning-site"
