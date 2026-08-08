@@ -12,10 +12,4 @@ const route = useRoute()
 const { data: post } = await useAsyncData(() => {
   return queryCollection('content').path(route.path).first()
 })
-const friends = [
-  {
-    name: "UncleCui",
-    link: "https://unclecui233.github.io"
-  }
-]
 </script>
