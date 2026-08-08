@@ -1,3 +1,4 @@
+/* 全局CSS */
 @import "tailwindcss";
 @import "@nuxt/ui";
 
@@ -81,6 +82,7 @@ html {
   filter: blur(0);
 }
 
+/* 悬停下划线效果 */
 .hover-underline {
   @apply relative;
   @apply after:absolute;
@@ -95,6 +97,7 @@ html {
   @apply hover:after:opacity-100;
 }
 
+/* 修复markdown渲染"任务列表"方格图标时错误的问题*/
 li.task-list-item {
   position: relative;
   list-style: none;
@@ -105,4 +108,32 @@ li.task-list-item > input[type="checkbox"] {
   top: 0.35em;
   left: -1.1rem;
   margin: 0;
+}
+
+/* 玻璃效果 */
+.glass-lower-level {
+  @apply dark:bg-white/10;
+  @apply backdrop-blur-sm;
+  @apply border border-white/20;
+  @apply shadow-[2px_2px_10px_rgba(0,0,0,0.10)] shadow-gray-500/20 dark:shadow-white/10;
+}
+
+.glass-upper-level {
+  @apply bg-white/20;
+  @apply border border-white/10;
+  @apply shadow-[2px_2px_10px_rgba(0,0,0,0.10)] shadow-gray-500/20 dark:shadow-white/10;
+}
+
+/* 友链卡片 */
+.friends-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 640px) {
+  .friends-grid {
+    grid-template-columns: 1fr;
+  }
 }

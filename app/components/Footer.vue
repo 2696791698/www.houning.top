@@ -1,22 +1,22 @@
 <template>
   <footer class="font-medium text-base text-center text-gray-500 dark:text-gray-300 pb-8">
     <div>
-      <a 
-        href="https://beian.miit.gov.cn" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="hover-underline">
+      <a href="https://beian.miit.gov.cn"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="hover-underline"
+      >
         「闽ICP备2025116672号-1」
       </a>
     </div>
     <div>Copyright © 2025 - 2026 Houning. All Rights Reserved.</div>
     <div>
       本站内容如无特别声明, 均使用
-      <a
-        href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hover-underline">
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="hover-underline"
+      >
         CC BY-NC-ND 4.0
       </a>
       许可协议, 转载请注明出处.

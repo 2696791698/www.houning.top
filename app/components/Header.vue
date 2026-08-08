@@ -29,13 +29,13 @@
       </div>
 
       <div class="flex items-center justify-center">
-        <!-- 外壳胶囊 -->
+        <!-- 下层的胶囊 -->
         <div
           class="flex items-center justify-center relative rounded-full dark:bg-white/10 backdrop-blur-sm shadow-[2px_2px_10px_rgba(0,0,0,0.10)] shadow-gray-500/20 dark:shadow-white/10 border border-white/20 h-[50px]"
           ref="navRef"
           @mouseleave="moveToActive">
 
-          <!-- 滑动胶囊 -->
+          <!-- 上层滑动的胶囊 -->
           <div 
             class="absolute left-0 inset-y-[6px] rounded-full bg-white/20 border border-white/10 pointer-events-none transition-all duration-300 ease-out z-20 shadow-[2px_2px_10px_rgba(0,0,0,0.10)] shadow-gray-500/20 dark:shadow-white/10"
             :style="capsuleStyle" />
